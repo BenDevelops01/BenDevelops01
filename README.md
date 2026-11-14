@@ -5,8 +5,6 @@
   </picture>
 </a>
 
-<p align="center"><a href="https://bendevelops.vercel.app"><img src="./assets/link-portfolio.png" alt="Portfolio" width="28%" /></a><a href="https://x.com/bennybuild5"><img src="./assets/link-x.png" alt="X — @bennybuild5" width="22%" /></a><a href="https://trythread.xyz"><img src="./assets/link-thread.png" alt="Thread" width="22%" /></a><a href="https://buymeacoffee.com/bendevelops"><img src="./assets/link-coffee.png" alt="Buy me a coffee" width="28%" /></a></p>
-
 **[Thread](https://trythread.xyz)** — an AI companion for Mac and the web. [Source ↗](https://github.com/BenDevelops01/Thread)
 
 ### Contributions
