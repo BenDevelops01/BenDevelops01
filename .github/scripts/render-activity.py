@@ -167,6 +167,8 @@ def main():
     parser.add_argument('--user', required=True)
     parser.add_argument('--out', default='assets')
     parser.add_argument('--calendar-file')
+    parser.add_argument('--stats-only', action='store_true')
+    parser.add_argument('--readme', default='README.md')
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.user):
         raise ValueError('Invalid GitHub username')
@@ -187,10 +189,21 @@ def main():
     summary = stats(cells)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    for dark in [True, False]:
-        for mobile in [False, True]:
-            name = 'activity-' + ('dark' if dark else 'light') + ('-mobile' if mobile else '') + '.svg'
-            (out/name).write_text(render(cells, summary, dark, mobile))
+    if args.stats_only:
+        readme = Path(args.readme)
+        block = ('<!-- activity-stats:start -->\n'
+                 '<p align="center"><b>{contributions}</b> contributions · '
+                 '<b>{active_days}</b> active days · <b>{best_streak} days</b> best streak'
+                 '<br/><sub>Last 12 weeks</sub></p>\n<!-- activity-stats:end -->').format(**summary)
+        updated, changed = re.subn(r'<!-- activity-stats:start -->.*?<!-- activity-stats:end -->', lambda match: block, readme.read_text(), flags=re.S)
+        if changed != 1:
+            raise ValueError('Expected exactly one stats block; refusing to rewrite README')
+        readme.write_text(updated)
+    else:
+        for dark in [True, False]:
+            for mobile in [False, True]:
+                name = 'activity-' + ('dark' if dark else 'light') + ('-mobile' if mobile else '') + '.svg'
+                (out/name).write_text(render(cells, summary, dark, mobile))
     (out/'activity-data.json').write_text(json.dumps({'user': args.user, 'source': f'https://github.com/users/{args.user}/contributions', **summary, 'days': cells}, indent=2) + '\n')
     print(json.dumps(summary))
 

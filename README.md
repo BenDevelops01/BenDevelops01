@@ -8,12 +8,17 @@
 
 **[Thread](https://trythread.xyz)** — an AI companion for Mac and the web. [Source ↗](https://github.com/BenDevelops01/Thread)
 
+### Contributions
+
 <picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/activity-dark-mobile.svg" />
-  <source media="(max-width: 600px)" srcset="./assets/activity-light-mobile.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/activity-dark.svg" />
-  <img alt="My contribution activity over the last 12 weeks, with an animated snake and real contribution, active-day and streak stats" src="./assets/activity-light.svg" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/snake-light.svg" />
+  <img alt="Animated snake eating my GitHub contributions" src="./assets/snake-light.svg" width="100%" />
 </picture>
+
+<!-- activity-stats:start -->
+<p align="center"><b>55</b> contributions · <b>14</b> active days · <b>4 days</b> best streak<br/><sub>Last 12 weeks</sub></p>
+<!-- activity-stats:end -->
 
 <!-- Social logos match the public site. Contribution activity refreshes daily from the public GitHub calendar. -->
 
