@@ -595,5 +595,13 @@
       "level": 4,
       "count": 10
     }
-  ]
+  ],
+  "snake_sha256": {
+    "snake-dark.svg": "e44cc232b1ac3d2025b5eda79afb0d6f442775911ea2b076030d21df83c45bb3",
+    "snake-light.svg": "b0a5c5ac2ca2026e6a8c215c3b1be75950ff6d6a050e3fda41c4704cb278ea15"
+  },
+  "snapshot_hash": "41447d21bfc754877ac0a13866b73fe31993c671f3119e964ccc847606773c00",
+  "as_of_local_date": "2026-11-15",
+  "updated_at": "2026-11-15T00:28:12+11:00",
+  "cache_version": "0cde559f4626"
 }
