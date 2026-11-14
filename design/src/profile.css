@@ -1,0 +1,5 @@
+.project-page { display:flex;flex-direction:column;height:100%;padding:18px 14px;box-sizing:border-box;color:#20232a;gap:12px;background:#fafafa; }
+.project-page b {font-size:19px;font-weight:700;letter-spacing:-.04em;}
+.project-page span {font-size:13px;line-height:1.5;color:#666c76;}
+.project-page small {font-size:9px;margin-top:auto;color:#496bd4;}
+.profile-nav .gooey-nav__link {width:266px;box-sizing:border-box;justify-content:center;}

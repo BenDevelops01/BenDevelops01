@@ -34,8 +34,8 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            assets/snake-light.svg?color_snake=#537d13&color_dots=#edf1e7,#d8edb4,#addb6a,#7cb832,#537d13
-            assets/snake-dark.svg?palette=github-dark&color_snake=#c4f564&color_dots=#1c2417,#344a20,#597d2c,#87b841,#c4f564
+            assets/snake-light.svg?color_snake=#496bd4&color_dots=#ebedf0,#d4dff6,#a6bbed,#7392df,#496bd4
+            assets/snake-dark.svg?palette=github-dark&color_snake=#e2e8f0&color_dots=#161b22,#263657,#3b5281,#6889c9,#9bbbff
 
       - name: Save refreshed animations
         run: |
