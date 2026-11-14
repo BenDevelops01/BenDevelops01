@@ -3,12 +3,14 @@
 Only public calendar data is used. No credentials, JavaScript, or GIFs are needed.
 """
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 import argparse
 import json
+import hashlib
 import math
 import re
 import time
@@ -162,6 +164,20 @@ def render(cells, summary, dark, mobile):
     return ''.join(svg)
 
 
+def refresh_metadata(payload, previous, now):
+    digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+    local_date = now.date().isoformat()
+    unchanged = (previous.get('snapshot_hash') == digest
+                 and previous.get('as_of_local_date') == local_date
+                 and previous.get('updated_at'))
+    updated_at = previous['updated_at'] if unchanged else now.isoformat(timespec='seconds')
+    version = hashlib.sha256(f'{digest}:{local_date}'.encode()).hexdigest()[:12]
+    return {
+        'snapshot_hash': digest, 'as_of_local_date': local_date,
+        'updated_at': updated_at, 'cache_version': version,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--user', required=True)
@@ -169,6 +185,7 @@ def main():
     parser.add_argument('--calendar-file')
     parser.add_argument('--stats-only', action='store_true')
     parser.add_argument('--readme', default='README.md')
+    parser.add_argument('--timezone', default='Australia/Sydney')
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.user):
         raise ValueError('Invalid GitHub username')
@@ -189,22 +206,42 @@ def main():
     summary = stats(cells)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    data_path = out/'activity-data.json'
+    payload = {'user': args.user, 'source': f'https://github.com/users/{args.user}/contributions', **summary, 'days': cells}
+    if args.stats_only:
+        payload['snake_sha256'] = {
+            name: hashlib.sha256((out/name).read_bytes()).hexdigest()
+            for name in ['snake-dark.svg', 'snake-light.svg']
+        }
+    try:
+        previous = json.loads(data_path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError):
+        previous = {}
+    timezone = ZoneInfo(args.timezone)
+    metadata = refresh_metadata(payload, previous, datetime.now(timezone))
+    payload.update(metadata)
     if args.stats_only:
         readme = Path(args.readme)
+        updated_time = datetime.fromisoformat(metadata['updated_at']).astimezone(timezone)
+        display_time = updated_time.strftime('%d %b %Y, %H:%M %Z')
         block = ('<!-- activity-stats:start -->\n'
                  '<p align="center"><b>{contributions}</b> contributions · '
                  '<b>{active_days}</b> active days · <b>{best_streak} days</b> best streak'
-                 '<br/><sub>Last 12 weeks</sub></p>\n<!-- activity-stats:end -->').format(**summary)
+                 '<br/><sub>Last 12 weeks · Updated {updated}</sub></p>\n<!-- activity-stats:end -->').format(**summary, updated=display_time)
         updated, changed = re.subn(r'<!-- activity-stats:start -->.*?<!-- activity-stats:end -->', lambda match: block, readme.read_text(), flags=re.S)
         if changed != 1:
             raise ValueError('Expected exactly one stats block; refusing to rewrite README')
+        version = metadata['cache_version']
+        updated, image_count = re.subn(r'(\./assets/snake-(?:dark|light)\.svg)(?:\?v=[A-Za-z0-9_-]+)?', lambda match: f'{match.group(1)}?v={version}', updated)
+        if image_count != 3:
+            raise ValueError('Expected all three snake image references; refusing to rewrite README')
         readme.write_text(updated)
     else:
         for dark in [True, False]:
             for mobile in [False, True]:
                 name = 'activity-' + ('dark' if dark else 'light') + ('-mobile' if mobile else '') + '.svg'
                 (out/name).write_text(render(cells, summary, dark, mobile))
-    (out/'activity-data.json').write_text(json.dumps({'user': args.user, 'source': f'https://github.com/users/{args.user}/contributions', **summary, 'days': cells}, indent=2) + '\n')
+    data_path.write_text(json.dumps(payload, indent=2) + '\n')
     print(json.dumps(summary))
 
 

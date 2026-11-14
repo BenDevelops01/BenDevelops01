@@ -2,14 +2,11 @@ name: Feed the snake
 
 on:
   schedule:
-    - cron: "23 18 * * *"
+    # Offset from the hour to reduce contention with busy scheduled jobs.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - .github/workflows/snake.yml
-      - .github/scripts/trim-snake.py
-      - .github/scripts/render-activity.py
 
 concurrency:
   group: contribution-snake
@@ -45,7 +42,7 @@ jobs:
       - name: Refresh the activity stats
         env:
           PROFILE_USER: ${{ github.repository_owner }}
-        run: python3 .github/scripts/render-activity.py --user "$PROFILE_USER" --out assets --stats-only --readme README.md
+        run: python3 .github/scripts/render-activity.py --user "$PROFILE_USER" --out assets --stats-only --readme README.md --timezone Australia/Sydney
 
       - name: Save refreshed animations
         run: |
