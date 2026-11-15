@@ -11,13 +11,13 @@
 ### Contributions
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/snake-dark.svg?v=cf2b77509efa" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/snake-light.svg?v=cf2b77509efa" />
-  <img alt="Animated snake eating my GitHub contributions" src="./assets/snake-light.svg?v=cf2b77509efa" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/snake-dark.svg?v=98264fae3634" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/snake-light.svg?v=98264fae3634" />
+  <img alt="Animated snake eating my GitHub contributions" src="./assets/snake-light.svg?v=98264fae3634" width="100%" />
 </picture>
 
 <!-- activity-stats:start -->
-<p align="center"><b>57</b> contributions · <b>15</b> active days · <b>4 days</b> best streak<br/><sub>Last 12 weeks · Updated 15 Nov 2026, 13:17 AEDT</sub></p>
+<p align="center"><b>59</b> contributions · <b>15</b> active days · <b>4 days</b> best streak<br/><sub>Last 12 weeks · Updated 15 Nov 2026, 20:38 AEDT</sub></p>
 <!-- activity-stats:end -->
 
 <!-- Social logos match the public site. Contribution activity refreshes daily from the public GitHub calendar. -->
