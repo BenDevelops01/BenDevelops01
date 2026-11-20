@@ -3,10 +3,8 @@
 > “Outwork your excuses.”
 
 <p align="center">
-  <a href="https://trythread.xyz" title="Thread"><img src="./assets/social-thread.svg" alt="Thread" height="64" /></a><a href="https://x.com/bennybuild5" title="@bennybuild5 on X"><img src="./assets/social-x.svg" alt="X — @bennybuild5" height="64" /></a><a href="https://buymeacoffee.com/bendevelops" title="Buy me a coffee"><img src="./assets/social-coffee.svg" alt="Buy me a coffee" height="64" /></a>
+  <a href="https://x.com/bennybuild5" title="@bennybuild5 on X"><img src="./assets/social-x.svg" alt="X — @bennybuild5" height="64" /></a><a href="https://buymeacoffee.com/bendevelops" title="Buy me a coffee"><img src="./assets/social-coffee.svg" alt="Buy me a coffee" height="64" /></a>
 </p>
-
-**[Thread](https://trythread.xyz)** — an AI companion for Mac and the web. [Source ↗](https://github.com/BenDevelops01/Thread)
 
 ### Contributions
 
