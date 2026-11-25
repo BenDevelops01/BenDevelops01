@@ -5,7 +5,7 @@
   "active_days": 20,
   "best_streak": 6,
   "from": "2026-09-06",
-  "through": "2026-11-24",
+  "through": "2026-11-25",
   "days": [
     {
       "x": 0,
@@ -566,14 +566,21 @@
       "date": "2026-11-24",
       "level": 0,
       "count": 0
+    },
+    {
+      "x": 11,
+      "y": 3,
+      "date": "2026-11-25",
+      "level": 0,
+      "count": 0
     }
   ],
   "snake_sha256": {
-    "snake-dark.svg": "dfa2339a69e543bfc28db07dd9dee78e024c2a7acd0f7ea54a40d1a4c57a4bce",
-    "snake-light.svg": "14868f3d05af0cb6662090a71358b4b4bcb875ac3c2be5eb23029e5b078ab4d5"
+    "snake-dark.svg": "70c0743a70b87ec137c38b1d63a44c7aab71ce5df2b15705c9e2012430e50cc0",
+    "snake-light.svg": "851686cf445993f3e250f1f6aa77555dac4da3d36af09590507febffa8edd29c"
   },
-  "snapshot_hash": "0e84502bdac6a3db676dd79146dddc50178674169106d759111a400d48d2e327",
+  "snapshot_hash": "8dab972b01b4ff8d050773be0ac33692547e063fe35a3f8b8fb6aa38aa2bcf94",
   "as_of_local_date": "2026-11-25",
-  "updated_at": "2026-11-25T09:44:17+11:00",
-  "cache_version": "cf2cf9e8708d"
+  "updated_at": "2026-11-25T16:05:04+11:00",
+  "cache_version": "190cec82da1f"
 }
